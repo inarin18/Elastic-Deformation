@@ -178,24 +178,12 @@ if __name__ == "__main__":
         img_array = np.array([[int.from_bytes(f.read(1), byteorder="big") for _ in range(num_of_clms)] for _ in range(num_of_rows)])
  
         img = Image.fromarray(img_array, mode="F")
-        print(img)
         img.show()
-        # img.save("./Data/imgs_handwritten_digit/img_original.png")
         
         dsplcmnt_fld = generate_initial_displacement_field(num_of_rows, num_of_clms)
         
         alpha = 100           # scale factor
         sigma = np.sqrt(20)   # standard deviation
-    
-        """
-            ※テキスト中の 幅(width) はおそらく分散に対応
-            sigma < 1 ならばらばら（まとまりがない）, sigma >> 1 (10程度) ならまとまりを持って変形
-            alpha >> sigma がよい ( alpha = sigma^2 とかがいいかも => 若干押しつぶされた感じになる) 
-                                ( alpha = 2 * sigma^2 ~ 3 * sigma^2 で結構変形する)
-                → これは sigma が大きくなると変位場への畳み込みの際の係数も全体的に小さくなるため（多分）
-            alpha が sigma に対してでかすぎるとぐっちゃぐち
-            sigma が alpha に対してでかすぎると変わらなすぎ
-        """
         
         smoothed_fld = smooth_displacement_filed_with_gaussian(dsplcmnt_fld, sigma=sigma)
         
@@ -204,9 +192,7 @@ if __name__ == "__main__":
         warped_img_array = warp_image_with_displacement_field(img_array=img_array, dsplcmnt_fld=scaled_smoothed_fld)
         
         warped_img = Image.fromarray(warped_img_array)
-        print(warped_img)
         warped_img.show()
-        # warped_img.save("./Data/imgs_handwritten_digit/img_warped.png")
     
         
         if debug:
@@ -217,8 +203,4 @@ if __name__ == "__main__":
             print(gaussian_filter)
             
             print(smoothed_fld)
-            
-        
-        # arrayから画像オブジェクトを生成
-        # https://pillow.readthedocs.io/en/stable/handbook/concepts.html#modes
         
