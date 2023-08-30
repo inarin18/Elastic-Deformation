@@ -1,6 +1,5 @@
 # Elastic Deformation
 
----
 
 ## 概要
 
@@ -8,7 +7,6 @@
 
 PRML：p.263 - Fig 5.14 での変形を実装したものになる．
 
----
 
 ## 仕様
 
@@ -33,7 +31,6 @@ PRML：p.263 - Fig 5.14 での変形を実装したものになる．
 
 > テキスト中の 幅(width) はおそらく分散に対応
 
----
 
 ## 実行例
 
@@ -45,19 +42,16 @@ PRML：p.263 - Fig 5.14 での変形を実装したものになる．
 
 ![](./Data/imgs_handwritten_digit/9_alpha=100_sigma=sqrt40.jpg)
 
----
 
 ## 問題点
 
 上手く保存ができない．
 
----
 
 ## データの引用元
 
 手書き数字データ：[QMNIST](https://github.com/facebookresearch/qmnist)
 
----
 
 ## その他
 
